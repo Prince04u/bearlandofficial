@@ -1,7 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bearlandofficial",
-  "main": ".output/server/index.mjs",
+  "main": "dist/server/server.js",
   "compatibility_date": "2026-06-10",
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
 }
