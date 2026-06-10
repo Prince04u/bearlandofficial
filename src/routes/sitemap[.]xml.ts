@@ -9,7 +9,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const urls: string[] = [
+        const urls = [
           "/",
           "/news",
           "/forum",
@@ -22,7 +22,6 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/leaderboards",
           "/store",
           "/staff",
-
           "/gamemodes/skypvp",
           "/gamemodes/anarchy",
           "/gamemodes/bedrock",
@@ -33,37 +32,32 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/gamemodes/kitpvp",
         ];
 
-        // News posts only
         POSTS.forEach((post) => {
           urls.push(`/post/${post.slug}`);
         });
 
         const today = new Date().toISOString().split("T")[0];
 
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (url) => `
+        const xmlUrls = urls
+          .map((url) => {
+            return `
   <url>
     <loc>${BASE_URL}${url}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>${
-      url === "/"
-        ? "1.0"
-        : url === "/news" || url === "/gamemodes"
-        ? "0.9"
-        : "0.8"
-    }</priority>
-  </url>`
-  )
-  .join("")}
+    <priority>0.8</priority>
+  </url>`;
+          })
+          .join("");
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${xmlUrls}
 </urlset>`;
 
         return new Response(xml, {
           headers: {
-            "Content-Type": "application/xml; charset=utf-8",
+            "Content-Type": "application/xml",
             "Cache-Control": "public, max-age=3600",
           },
         });
