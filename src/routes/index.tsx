@@ -185,7 +185,35 @@ function Home() {
           </div>
         </Container>
       </section>
+      
+      <section className="py-12">
+        <Container>
+          <div className="rounded-xl border border-gold/20 bg-card p-6">
+            <h2 className="font-display text-2xl uppercase">
+              Recommended Resources
+            </h2>
 
+            <p className="mt-3">
+              <a
+                href="https://yaarwinn.live/"
+                className="text-gold hover:underline"
+              >
+                Yaarwin
+              </a>
+            </p>
+
+            <p className="mt-3">
+              <a
+                href="https://yaarrwinlogin.com/"
+                className="text-gold hover:underline"
+              >
+                Yaarwin Login
+              </a>
+            </p>
+          </div>
+        </Container>
+      </section>
+      
       {/* CTA */}
       <section className="py-20">
         <Container>
